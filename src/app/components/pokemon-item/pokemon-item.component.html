@@ -1,0 +1,10 @@
+<div
+  class="pokemon-item p-3 row align-items-center my-3 text-light
+  pokemon-{{ gender }}"
+>
+  {{ name }} - {{ type }} - {{ getHp() }} - {{ gender }}
+
+  <button [disabled]="isButtonDisabled" (click)="onButtonClick()">
+    changer le nom
+  </button>
+</div>

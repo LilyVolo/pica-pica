@@ -1,0 +1,28 @@
+<div>{{ title }}</div>
+
+<div class="row">
+  <div class="col">
+    <input type="text" class="fom-control" [(ngModel)]="title" />
+  </div>
+  <div class="col">
+    <input (input)="onInputChange($event)" type="text" class="fom-control" />
+
+    <button (click)="onDisableBtnClick()">toggle button disabled</button>
+  </div>
+  <div class="col">
+    <button [disabled]="isButtonDisabled" class="btn btn-primary">test</button>
+  </div>
+</div>
+
+<div class="bg-danger p-3 text-light">
+  <app-pokemon-item />
+  <app-pokemon-item />
+  <app-pokemon-item />
+
+  <h1 *ngIf="isSayingBonjour; else bye">bonjour</h1>
+  <ng-template #bye>
+    <div>au revoir</div>
+  </ng-template>
+
+  <button (click)="onToggleBonjour()">toggle button Bonjour</button>
+</div>

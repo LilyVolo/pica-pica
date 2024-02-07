@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col">
+    <div class="bg-danger p-3 text-light">
+      <app-pokemon-item />
+      <app-pokemon-item />
+      <app-pokemon-item />
+    </div>
+    <input
+      type="text"
+      class="form-control"
+      (keypress)="onInputKeyPress($event)"
+      [(ngModel)]="newPokemonName"
+    />
+    <button (click)="addPockemon()" class="'btn btn-primary">Ajouter</button>
+  </div>
+</div>
+
+<div *ngFor="let pokemon of pokemons" class="bg-primary text-light p-3 my-3">
+  {{ pokemon.name }} - {{ pokemon.gender }}
+</div>
