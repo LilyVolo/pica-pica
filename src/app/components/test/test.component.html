@@ -1,20 +1,44 @@
 <div class="row">
   <div class="col">
-    <div class="bg-danger p-3 text-light">
-      <app-pokemon-item />
-      <app-pokemon-item />
-      <app-pokemon-item />
-    </div>
+    <div class="bg-danger p-3 text-light"></div>
     <input
       type="text"
       class="form-control"
       (keypress)="onInputKeyPress($event)"
       [(ngModel)]="newPokemonName"
     />
-    <button (click)="addPockemon()" class="'btn btn-primary">Ajouter</button>
+    <button (click)="addPokemon()" class="'btn btn-primary">Ajouter</button>
   </div>
 </div>
-
-<div *ngFor="let pokemon of pokemons" class="bg-primary text-light p-3 my-3">
+<div
+  *ngFor="let pokemon of pokemons"
+  class="text-light p-3 my-3"
+  style="background-color: {{ genderColors[pokemon.gender] }}"
+>
   {{ pokemon.name }} - {{ pokemon.gender }}
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div
+    class="toast"
+    [ngClass]="{ show: this.addedPokemon }"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="toast-header">
+      <strong class="me-auto"> Pokemon added</strong>
+      <button
+        type="button"
+        (click)="onToastClose()"
+        class="btn-close"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="toast-body">
+      Pokemon -
+      {{ addedPokemon }} has been added
+    </div>
+  </div>
 </div>
