@@ -28,6 +28,7 @@ export class TestComponent {
   };
 
   genders = ['male', 'female', 'unknown'];
+
   pokemons: Pokemon[] = [
     {
       name: 'Pikachu',
@@ -39,6 +40,9 @@ export class TestComponent {
     },
   ];
 
+  constructor() {
+    this.loadPokemons();
+  }
   pokemonAlreadyExists(pokemonName: string) {
     const pokemonWithSameName = this.pokemons.find((pokemon) => {
       return pokemonName === pokemon.name;
@@ -47,7 +51,10 @@ export class TestComponent {
   }
 
   addPokemon() {
-    if (this.pokemonAlreadyExists(this.newPokemonName)) return;
+    if (this.pokemonAlreadyExists(this.newPokemonName)) {
+      this.duplicatePokemon === this.newPokemonName;
+      return;
+    }
     const newPokemon: Pokemon = {
       name: this.newPokemonName,
       gender: this.getRandomGender(),
@@ -56,6 +63,7 @@ export class TestComponent {
     this.addedPokemon = this.newPokemonName;
     this.newPokemonName = '';
     this.closeToastAfterSomeTime();
+    this.storePokemons();
   }
 
   onInputKeyPress(event: KeyboardEvent) {
@@ -75,10 +83,26 @@ export class TestComponent {
   closeToastAfterSomeTime() {
     setTimeout(() => {
       this.onToastClose();
-    }, 2000);
+    }, 4000);
   }
   onToastClose() {
     this.addedPokemon = '';
     this.duplicatePokemon = '';
+  }
+
+  storePokemons() {
+    const pokemonsJson = JSON.stringify(this.pokemons);
+    console.log(pokemonsJson);
+    localStorage.setItem('pokemons', pokemonsJson);
+  }
+
+  loadPokemons() {
+    const pokemonStr = localStorage.getItem('pokemons');
+    if (!pokemonStr) return;
+    this.pokemons = JSON.parse(pokemonStr);
+  }
+  onDeletePokemon(pokemonIndex: number) {
+    this.pokemons.splice(pokemonIndex, 1);
+    this.storePokemons();
   }
 }
