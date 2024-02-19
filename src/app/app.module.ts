@@ -9,10 +9,25 @@ import { FormsModule } from '@angular/forms';
 import { TestComponent } from './components/test/test.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ExpInpComponent } from './components/exp-inp/exp-inp.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LiveComponent } from './components/live/live.component';
 
 @NgModule({
-  declarations: [AppComponent, PokemonItemComponent, PokemonListComponent, TestComponent, ExpInpComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, NgbModule],
+  declarations: [
+    AppComponent,
+    PokemonItemComponent,
+    PokemonListComponent,
+    TestComponent,
+    ExpInpComponent,
+    LiveComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    NgbModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
